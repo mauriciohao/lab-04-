@@ -1,0 +1,22 @@
+#include <stdio.h>
+// excircio 01 - a)
+
+float soma(float a,float b,float c){
+   float s = a + b + c;
+return s;
+}
+// b)
+int main(void) {
+  float a,b,c;
+  printf("Digita primeiro numero:");
+  scanf("%f",&a);
+  printf("Digita segunda numero:");
+  scanf("%f",&b);
+  printf("Digita terceira numero:");
+  scanf("%f",&c);
+
+  float resposta = soma(a,b,c);
+  printf("Resultado:%f",resposta);
+  
+  return 0;
+}
