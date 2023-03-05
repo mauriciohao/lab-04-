@@ -1,0 +1,29 @@
+// exercicio 02 - a)
+float  f2c(float  Fahrenheit){
+  float cel = (Fahrenheit - 32)/1.8;
+return cel;
+}
+float c2f(float  Celsius){
+  float fa = 1.8 *  Celsius + 32;
+return fa;
+}
+// b)
+int main(void){
+  int operacao;
+  float temperatura;
+  printf("(1) Converter de Celsius para Fahrenheit\n");
+  printf("(2) Converter de Fahrenheit para Celsius\n");
+  printf("Escolhe sua operacao:");
+  scanf("%d",&operacao);
+  printf("Digete seu temperatura:");
+  scanf("%f",&temperatura);
+  if(operacao == 1){
+    float resposta =  c2f(temperatura);
+    printf("Resutado:%f",resposta);
+    }
+  if(operacao == 2){
+   float resposta =  f2c(temperatura);
+    printf("Resutado:%f",resposta);
+    } 
+  return 0;
+}

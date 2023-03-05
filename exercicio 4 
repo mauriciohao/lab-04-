@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+// exercicio 4 - a)
+bool divisor(int N, int D) {
+    if (N % D == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// b)
+int qtdDivisores(int M) {
+    int qtd = 0;
+    for (int i = 1; i <= M; i++) {
+        if (divisor(M, i)) {
+            qtd++;
+        }
+    }
+    return qtd;
+}
+// c)
+int main() {
+    int num;
+    printf("Digite um número inteiro: ");
+    scanf("%d", &num);
+    printf("O número %d possui %d divisores.\n", num, qtdDivisores(num));
+    return 0;
+}

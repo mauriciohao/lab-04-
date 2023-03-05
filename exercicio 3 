@@ -1,0 +1,23 @@
+#include <stdio.h>
+// exercicio 3 - a)
+void Tabuada(int x) {
+  int i;
+  for (i = 1; i <= 10; i++) {
+    printf("%d x %d = %d\n", x, i, x * i);
+  }
+}
+int main() {
+  int num,i;
+  printf("Digite um numero inteiro:");
+  scanf("%d", &num);
+  Tabuada(num);
+  printf("\n");
+// b)
+  printf("Tabuada 1 a 9!\n");
+  for (i = 1; i <= 9; i++) {
+    printf("Tabuada do %d:\n", i);
+    Tabuada(i);
+    printf("\n");
+  }
+  return 0;
+}
