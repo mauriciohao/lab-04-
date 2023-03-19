@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+//Para que o usuário possa definir a quantidade de elementos que serão gerados randomicamente no array e mostrem o tempo gasto em cada busca solicitada pelo usuário.
+
+// para busca de binaria,deixa os numeros em ordem crescente 
+int ordem_cresce(const void* a, const void* b) {
+  return *(int*)a - *(int*)b;
+}
+
+int busca_binaria(int v[], int n, int e)
+{
+  int ini = 0;
+  int fim = n - 1;
+  int meio;
+  int count = 0;
+  //repetir enquanto nao esgotar possibiidades
+  while (ini <= fim){
+    count++;
+    meio = (ini + fim)/2;
+    // olhar o elemento que esta no meio 
+    // se for o elemento que estamos buscando 
+    if (e == v[meio]){
+       //retornar a reposta 
+       printf("contador[binaria]: %d\n",count);
+       return meio;
+    }
+    //se for maior que o buscado 
+    else if (v[meio]>e){
+       // ficar com a 1a metade 
+       fim = meio - 1;
+    }
+    // se for menor que o buscado 
+    else{
+       // ficar com 2a metade 
+       ini = meio + 1; 
+    }
+  }  
+  // retornar que nao encontrou
+  return -1;
+}
+
+int busca_linear(int v[],int n,int e)
+{
+  int i;
+  int count = 0; 
+  for (i=0;i < n; i++) {
+    count++;
+    if(v[i] == e ){
+      printf("contador[linear]: %d\n",count);
+      return i;
+    }
+  }
+  printf("contador[linear]: %d\n",count);
+  return -1 ;
+}
+
+void mostra(int v[],int n)
+{
+  printf("[");
+  int i;
+  for (i = 0; i < n; i++ ){
+    printf("%d ",v[i]);
+  }
+    printf("]\n");
+}
+
+int main(void) {
+  int N;
+  printf("Quantidades numeros que precisar gera no randome: ");
+  scanf("%d",&N);
+
+  srand(time(NULL));
+  int* numeros = malloc(sizeof(int) * N);
+  int i;
+  for (i = 0; i < N; i++) {
+    numeros[i] = 1 + rand() % N;
+  }
+  mostra(numeros,N);
+  
+  printf("Elemento a ser buscado: ");
+  int elemento;
+  scanf("%d",&elemento);
+  // tempo de busca Linear
+  clock_t start = clock();
+  int resposta = busca_linear(numeros, N, elemento);
+  clock_t end = clock();
+  printf("Resultado[linear]: %d\n",resposta);
+  printf("Tempo de resultado[linear]: %f segundos\n", (double)(end - start) / CLOCKS_PER_SEC);
+
+  
+  qsort(numeros, N, sizeof(int), ordem_cresce);
+  mostra(numeros, N);
+  printf("Elemento a ser buscado: ");
+  int element1;
+  scanf("%d",&element1);
+  // tempo de busca Binária
+  start = clock();
+  int resposta1 = busca_binaria(numeros, N, element1);
+  end = clock();
+  printf("Resultado[binaria]: %d\n",resposta1);
+  printf("Tempo de resultado[binaria]: %f segundos\n", (double)(end - start) / CLOCKS_PER_SEC);
+  
+  return 0;
+}
